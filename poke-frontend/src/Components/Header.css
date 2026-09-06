@@ -1,0 +1,10 @@
+.navbar.navbar-expand-lg {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: black;
+}
+
+.navbar-line {
+  margin-top: 56px;
+  margin-bottom: 0;
+}
