@@ -1,3 +1,5 @@
 # Pokemon-Webapp
 
-A Project for developing tools for competitive Pokemon, meant for personal learning of web development.
+A Project for developing tools for random Pokemon teambuilding, meant for personal learning of web development.
+
+
