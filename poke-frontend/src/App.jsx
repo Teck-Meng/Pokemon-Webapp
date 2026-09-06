@@ -5,15 +5,21 @@ import Ability from './Components/Ability'
 import Moves from './Components/Moves'
 import Teambuilder from './Components/Teambuilder'
 
-function App() {
-  const [count, setCount] = useState(0)
-  const [page, setPage] = useState("Home")
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+function App() {
   return (
-    <>
-      <Home></Home>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/random-pokemon" element={<RandomMon />} />
+        <Route path="/random-ability" element={<Ability />} />
+        <Route path="/random-move" element={<Moves />} />
+        <Route path="/teambuilder" element={<Teambuilder />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
+
