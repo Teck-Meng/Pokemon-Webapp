@@ -1,0 +1,24 @@
+{
+  "name": "pokemon-webapp",
+  "version": "1.0.0",
+  "description": "A Project for developing tools for random Pokemon teambuilding, meant for personal learning of web development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teck-Meng/Pokemon-Webapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Teck-Meng/Pokemon-Webapp/issues"
+  },
+  "homepage": "https://github.com/Teck-Meng/Pokemon-Webapp#readme",
+  "dependencies": {
+    "pg": "^8.23.0"
+  }
+}
