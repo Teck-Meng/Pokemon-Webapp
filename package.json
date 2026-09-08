@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Teck-Meng/Pokemon-Webapp#readme",
   "dependencies": {
-    "pg": "^8.23.0"
+    "pg": "^8.23.0",
+    "pg-format": "^1.0.4"
   }
 }
