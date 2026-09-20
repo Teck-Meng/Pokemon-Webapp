@@ -5,16 +5,18 @@ pokemon (
         abilities TEXT[] NOT NULL
         type1 VARCHAR(10) NOT NULL
         type2 VARCHAR(10)
+        freq int
 );
-INSERT INTO pokemon (id, name, moves, abilities, type1, type2)
-VALUES (1, 'Bulbasaur', ARRAY['Tackle', 'Growl', 'Vine Whip'], ARRAY['Overgrow', 'Chlorophyll'], 'Grass', 'Poison');
+INSERT INTO pokemon (id, name, moves, abilities, type1, type2, freq)
+VALUES (1, 'Bulbasaur', ARRAY['Tackle', 'Growl', 'Vine Whip'], ARRAY['Overgrow', 'Chlorophyll'], 'Grass', 'Poison',0);
 {
     id: 1,
     name: 'Bulbasaur',
     moves: [ 'Tackle', 'Growl', 'Vine Whip' ],
     abilities: [ 'Overgrow', 'Chlorophyll' ],
     type1: 'Grass',
-    type2: 'Poison'
+    type2: 'Poison',
+    freq: 0;
   }
 
 moves (
@@ -26,6 +28,6 @@ VALUES ('Vine Whip', 'Grass');
 [ { move: 'Vine Whip', type: 'Grass' } ]
 
 abilities (
-        ability VARCHAR(20) NOT NULL
+        ability VARCHAR(30) NOT NULL UNIQUE
 );
 [ { ability: 'Overgrow' }, { ability: 'Chlorophyll' } ]

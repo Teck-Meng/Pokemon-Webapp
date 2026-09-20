@@ -1,6 +1,16 @@
+import {queryTable, updateTable} from './initializeDb.mjs'
+
 const MAX_DIGITS = 4;
 const MAX_DEX_NUM = 1025;
 const usedCheck = [0,0,0,0];
+
+let mons = [];
+let moves = [];
+let abilities = [];
+let randomMons = [];
+let randomMoves = [];
+let randomAbilities = [];
+let team = [];
 
 let generateNumArray = (num) => {
     const ARRAY_SIZE = 4;
@@ -13,50 +23,65 @@ let generateNumArray = (num) => {
     return result;
 };
 
-let permutateDexNumList = (dex_num_array, usedCheck, curNum, results, depth) => {
-    if(depth == 4){
-        if(curNum <= MAX_DEX_NUM){
-            results[results.length] = curNum;
+async function fetchDataFromDb(){
+    mons = await queryTable("pokemon");
+    moves = await queryTable("moves");
+    abilities = await queryTable("abilities");
+}
+
+
+async function randomizeMons(num){
+    const len = mons.length;
+    let res = [];
+    let choice = 0;
+    for(let i = 0; i < num; i++){
+        choice = Math.floor(Math.random() * len) + 1;
+        mons[choice].freq += 1;
+        try{
+            await updateTable(mons[choice].freq + 1, choice);
         }
-        return results;
-    }
-
-    for(let i = 0; i < MAX_DIGITS; i++){
-        if(usedCheck[i] == 0){
-            usedCheck[i] = 1;
-            curNum = curNum * 10 + dex_num_array[i];
-            permutateDexNumList(dex_num_array, usedCheck, curNum, results, depth + 1);
-            curNum = (curNum - dex_num_array[i]) / 10;
-            usedCheck[i] = 0;
+        catch(err){
+            console.log("randomize mons error: " + err);
         }
+        res.push(mons[choice]);
     }
+    return res;
+}
 
-    return results;
-};
-
-async function fetchPokemonFromApi(dex_num){
-    let res = "";
-    let url = "https://pokeapi.co/api/v2/pokemon/" + dex_num;
-    const response = await fetch(url);
-    const json = await response.json();
-};
-
-async function compilePokemonPerm(permList){
-    const resultList = [];
-    for(let i = 0; i < permList.length; i++){
-        const res = await fetchPokemonFromApi(permList[i]);
-        const temp = await res.json();
-        resultList[i] = await temp.name;
-        console.log(resultList[i]);
+function randomizeMoves(num){
+    const len = moves.length;
+    let res = [];
+    let choice = 0;
+    for(let i = 0; i < num; i++){
+        choice = Math.floor(Math.random() * len) + 1;
+        res.push(moves[choice]);
     }
-};
+    return res;
+}
 
-let mainPermute = (dex_num) => {
-    const numArray = generateNumArray(dex_num);
-    const permDexNumList = permutateDexNumList(numArray, usedCheck, 0, [], 0);
-    const res = compilePokemonPerm(permDexNumList);
-};
+function randomizeAbilities(num){
+    const len = abilities.length;
+    let res = [];
+    let choice = 0;
+    for(let i = 0; i < num; i++){
+        choice = Math.floor(Math.random() * len) + 1;
+        res.push(abilities[choice]);
+    }
+    return res;
+}
 
-const list = [1, 69, 67, 493, 865, 1014];
-console.log(mainPermute(369));
+async function updateTeam(prop, value, slot){
+  
+}
+
+
+
+
+
+await fetchDataFromDb();
+console.log(await randomizeMons(2));
+console.log(randomizeMoves(3));
+console.log(randomizeAbilities(4));
+
+//randomizeMons(1);
 
