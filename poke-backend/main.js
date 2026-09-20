@@ -7,9 +7,12 @@ const usedCheck = [0,0,0,0];
 let mons = [];
 let moves = [];
 let abilities = [];
+let items = [];
+
 let randomMons = [];
 let randomMoves = [];
 let randomAbilities = [];
+
 let team = [];
 
 let generateNumArray = (num) => {
@@ -27,6 +30,7 @@ async function fetchDataFromDb(){
     mons = await queryTable("pokemon");
     moves = await queryTable("moves");
     abilities = await queryTable("abilities");
+    items = await queryTable("items");
 }
 
 
@@ -45,6 +49,7 @@ async function randomizeMons(num){
         }
         res.push(mons[choice]);
     }
+    randomMons = res;
     return res;
 }
 
@@ -56,6 +61,7 @@ function randomizeMoves(num){
         choice = Math.floor(Math.random() * len) + 1;
         res.push(moves[choice]);
     }
+    randomMoves = res;
     return res;
 }
 
@@ -67,11 +73,12 @@ function randomizeAbilities(num){
         choice = Math.floor(Math.random() * len) + 1;
         res.push(abilities[choice]);
     }
+    randomAbilities = abilities;
     return res;
 }
 
 async function updateTeam(prop, value, slot){
-  
+    // name, type, ability, move1, move2, move3, move4
 }
 
 

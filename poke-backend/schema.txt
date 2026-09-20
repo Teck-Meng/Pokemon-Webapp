@@ -31,3 +31,7 @@ abilities (
         ability VARCHAR(30) NOT NULL UNIQUE
 );
 [ { ability: 'Overgrow' }, { ability: 'Chlorophyll' } ]
+
+CREATE TABLE items (
+        item VARCHAR(32) NOT NULL
+      );
