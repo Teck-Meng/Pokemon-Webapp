@@ -8,12 +8,28 @@ let mons = [];
 let moves = [];
 let abilities = [];
 let items = [];
+let natures = [
+    "Hardy (Neutral)", "Lonely (+Atk, -Def)", "Adamant (+Atk, -SpAtk)", "Naughty (+Atk, -SpDef)", "Brave (+Atk, -Speed)", "Bold (+Def, -Atk)", "Docile (Neutral)", "Impish (+Def, -SpAtk)", "Lax (+Def, -SpDef)", "Relaxed (+Def, -Speed)", "Modest (+SpAtk, -Atk)", "Mild (+SpAtk, -Def)", "Bashful (Neutral)", "Rash (+SpAtk, -SpDef)", "Quiet (+SpAtk, -Speed)", "Calm (+SpDef, -Atk)", "Gentle (+SpDef, -Atk)", "Careful (+SpDef, -SpAtk)", "Quirky (Neutral)", "Sassy (+SpDef, -Speed)", "Timid (+Speed, -Atk)", "Hasty (+Speed, -Def)", "Jolly (+Speed, -SpAtk)", "Naive (+Speed, -SpDef)", "Serious (Neutral)"
+]
 
 let randomMons = [];
 let randomMoves = [];
 let randomAbilities = [];
 
 let team = [];
+
+class selectedMon {
+    // name, type, ability, move1, move2, move3, move4
+  constructor(name, type, ability, move1, move2, move3, move4) {
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.move1 = move1;
+    this.move2 = move2;
+    this.move3 = move3;
+    this.move4 = move4;
+  }
+}
 
 let generateNumArray = (num) => {
     const ARRAY_SIZE = 4;
