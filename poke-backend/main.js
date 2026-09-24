@@ -20,9 +20,12 @@ let team = [];
 
 class selectedMon {
     // name, type, ability, move1, move2, move3, move4
-  constructor(name, type, ability, move1, move2, move3, move4) {
+  constructor(name, type1, type2, nature, item, ability, move1, move2, move3, move4) {
     this.name = name;
-    this.type = type;
+    this.type1 = type1;
+    this.type2 = type2;
+    this.nature = nature;
+    this.item = item;
     this.ability = ability;
     this.move1 = move1;
     this.move2 = move2;
@@ -41,6 +44,12 @@ let generateNumArray = (num) => {
     }
     return result;
 };
+
+function initTeam() {
+    for(let i = 0; i < 6; i++){
+        team.push(new selectedMon('-', '-', '-', '-', '-', '-', '-', '-', '-', '-'));
+    }
+}
 
 async function fetchDataFromDb(){
     mons = await queryTable("pokemon");
@@ -95,16 +104,50 @@ function randomizeAbilities(num){
 
 async function updateTeam(prop, value, slot){
     // name, type, ability, move1, move2, move3, move4
+    switch(prop){
+        case "name":
+            team[slot - 1].name = value;
+            break;
+        case "type1":
+            team[slot - 1].type1 = value;
+            break;
+        case "type2":
+            team[slot - 1].type2 = value;
+            break;
+        case "nature":
+            team[slot - 1].nature = value;
+            break;
+        case "item":
+            team[slot - 1].item = value;
+            break;
+        case "ability":
+            team[slot - 1].ability = value;
+            break;
+        case "move1":
+            team[slot - 1].move1 = value;
+            break;
+        case "move2":
+            team[slot - 1].move2 = value;
+            break;
+        case "move3":
+            team[slot - 1].move3 = value;
+            break;
+        case "move4":
+            team[slot - 1].move4 = value;
+            break;
+    }
 }
 
 
 
 
-
-await fetchDataFromDb();
-console.log(await randomizeMons(2));
-console.log(randomizeMoves(3));
-console.log(randomizeAbilities(4));
+initTeam();
+updateTeam("type1", "Grass", 2);
+updateTeam("name", "Galvantula", 4)
+//await fetchDataFromDb();
+//console.log(await randomizeMons(2));
+//console.log(randomizeMoves(3));
+//console.log(randomizeAbilities(4));
 
 //randomizeMons(1);
 
